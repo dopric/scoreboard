@@ -1,5 +1,6 @@
 import React from 'react'
 import Counter from './Counter'
+import PropTypes from 'prop-types'
 
 const Player = (props) => {
     return (
@@ -9,9 +10,15 @@ const Player = (props) => {
           { props.name }
         </span>
   
-        <Counter />
+        <Counter score={props.score} 
+        countHandler={(step)=>props.countHandler(step)}/>
       </div>
     );
+  }
+
+  Player.propTypes = {
+    score: PropTypes.number.isRequired,
+    countHandler: PropTypes.func.isRequired,
   }
 
   export default Player
