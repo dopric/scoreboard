@@ -43,6 +43,11 @@ class Stopwatch extends React.Component{
             elapsedTime: 0
         })
     }
+
+    componentWillUnmount(){
+        clearInterval(this.intervalId)
+    }
+    
     render(){
         const seconds = Math.floor(this.state.elapsedTime / 1000)
         return (
