@@ -5,31 +5,33 @@ class AddPlayer extends React.Component{
     constructor(props){
         super(props)
     }
-    state = {
-        playerName: ''
-    }
+    // state = {
+    //     playerName: ''
+    // }
 
-    onNameChanged =e =>{
-        this.setState({
-            playerName: e.target.value
-        })
-    }
+    playerInput = React.createRef();
+
+    // onNameChanged =e =>{
+    //     this.setState({
+    //         playerName: e.target.value
+    //     })
+    // }
 
     onSubmit = e=>{
         e.preventDefault();
         
-        this.props.addPlayer(this.state.playerName)
-        this.setState({
-            playerName: ''
-        })
+        this.props.addPlayer(this.playerInput.current.value)
+        // this.setState({
+        //     playerName: ''
+        // })
+        e.currentTarget.reset()
     }
     render(){
         return (
             <form onSubmit={this.onSubmit}>
                 <input 
                 type="text"
-                value={this.state.playerName}
-                onChange={this.onNameChanged}
+                ref={this.playerInput}
                 placeholder="Enter a player's name"
                 />
                 <input type="submit"

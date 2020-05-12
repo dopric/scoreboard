@@ -2,23 +2,39 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 
-const Counter = props => {
-   
+class Counter extends React.Component {
+    constructor(props){
+      super(props)
+    }
+    
+    static propTypes={
+      countHandler: PropTypes.func.isRequired,
+      score: PropTypes.number.isRequired,
+      missingProp: PropTypes.string.isRequired
+    }
   
+
+    render(){
+      const  {score, countHandler} = this.props;
+
       return (
         <div className="counter">
           <button className="counter-action decrement" 
-          onClick={()=> props.countHandler(-1)}> - </button>
-          <span className="counter-score">{ props.score }</span>
+          onClick={()=> countHandler(-1)}> - </button>
+          <span className="counter-score">{ score }</span>
           <button className="counter-action increment"
-          onClick={()=> props.countHandler(1)} > + </button>
+          onClick={()=> countHandler(1)} > + </button>
         </div>
       );
-  
+      }
   }
   
-  Counter.propTypes ={
-    score: PropTypes.number.isRequired,
-    countHandler: PropTypes.func.isRequired,
+  // Counter.propTypes ={
+  //   score: PropTypes.number.isRequired,
+  //   countHandler: PropTypes.func.isRequired,
+  // }
+
+  Counter.defaultProps = {
+    missingProp: 'This is a default value'
   }
   export default Counter;

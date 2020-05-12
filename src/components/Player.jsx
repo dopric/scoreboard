@@ -1,24 +1,31 @@
-import React from 'react'
+import React, {PureComponent} from 'react'
 import Counter from './Counter'
 import PropTypes from 'prop-types'
 
-const Player = (props) => {
-    return (
+class Player extends PureComponent {
+  constructor(props){
+    super(props)
+  }
+  render(){
+        return (
       <div className="player">
         <span className="player-name">
-          <button className="remove-player" onClick={() => props.removePlayer(props.id)}>✖</button>
-          { props.name }
+          <button className="remove-player" onClick={() => this.props.removePlayer(this.props.id)}>✖</button>
+          { this.props.name }
         </span>
   
-        <Counter score={props.score} 
-        countHandler={(step)=>props.countHandler(step)}/>
+        <Counter score={this.props.score} 
+        countHandler={(step)=>this.props.countHandler(step)}/>
       </div>
     );
   }
 
-  Player.propTypes = {
+
+ 
+}
+
+Player.propTypes = {
     score: PropTypes.number.isRequired,
     countHandler: PropTypes.func.isRequired,
   }
-
   export default Player
